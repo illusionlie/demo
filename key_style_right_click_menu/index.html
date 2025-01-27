@@ -12,13 +12,18 @@
   </head>
   <body>
     <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
+      let counter = 0;
+      const maxCounter = 10;
+      document.addEventListener('DOMContentLoaded', function initgalMenu() {
+        if (typeof galMenu !== 'function') {if (counter >= maxCounter) {console.error("⚙️GalMenu: Retry limit reached!");return;} else {counter++;console.warn("⚙️GalMenu: Js hasn't finished loading yet, retrying...");setTimeout(initgalMenu, 1000);return;}}
+        try {
         galMenu('body', {
           menu:"galRing",
           click_to_close:true,
           stay_open:false,
           audio_play:true,
-          audio_url:"./audio.mp3",
+          audio_url:"https://cdn.illusionlie.com/js/key_style_right_click_menu/audio.mp3",
+          font_size:"1.0em",
           ring1_text:"Home",
           ring1_link:"https://github.com/illusionlie/key_style_right_click_menu",
           ring1_pic:"https://cdn.illusionlie.com/img/girls/ayane_thumb.webp",
@@ -38,7 +43,11 @@
           ring6_link:"#other",
           ring6_pic:"https://cdn.illusionlie.com/img/girls/chieri_thumb.webp"
         });
-      });
+        console.log("⚙️GalMenu: Initialized!");
+        } catch (error) {
+          console.error("⚙️GalMenu: Initialization failed:", error);
+        }
+    });
     </script>
     <a href="https://github.com/illusionlie/key_style_right_click_menu" class="github-corner">
     <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#66677c; color:#fff; position: absolute; top: 0; border: 0; right: 0;z-index:9999">
